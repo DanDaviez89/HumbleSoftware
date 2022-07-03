@@ -11,7 +11,50 @@ const table10 = document.querySelector("#table10");
 const table11 = document.querySelector("#table11");
 const table12 = document.querySelector("#table12");
 
-localStorage.setItem('name', 'Bob');
-localStorage.removeItem('name');
+table1.addEventListener("click", () => {
+    localStorage.setItem('tableID', 1);
+});
 
-sessionStorage.setItem('name', 'John');
+table2.addEventListener("click", () => {
+    localStorage.setItem('tableID', 2);
+});
+
+table3.addEventListener("click", () => {
+    localStorage.setItem('tableID', 3);
+});
+
+table4.addEventListener("click", () => {
+    localStorage.setItem('tableID', 4);
+});
+
+table5.addEventListener("click", () => {
+    localStorage.setItem('tableID', 5);
+});
+
+table6.addEventListener("click", () => {
+    localStorage.setItem('tableID', 6);
+});
+
+table7.addEventListener("click", () => {
+    localStorage.setItem('tableID', 7);
+});
+
+table8.addEventListener("click", () => {
+    localStorage.setItem('tableID', 8);
+});
+
+table9.addEventListener("click", () => {
+    localStorage.setItem('tableID', 9);
+});
+
+table10.addEventListener("click", () => {
+    localStorage.setItem('tableID', 10);
+});
+
+table11.addEventListener("click", () => {
+    localStorage.setItem('tableID', 11);
+});
+
+table12.addEventListener("click", () => {
+    localStorage.setItem('tableID', 12);
+});
