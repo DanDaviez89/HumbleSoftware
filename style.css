@@ -1,0 +1,86 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.containerT {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.buttons {
+    display: flex;
+    width: 100%;
+}
+
+.buttonsCol {
+    display: flex;
+    width: 30%;
+    align-items: flex-start;
+    justify-content: center;
+    align-content: space-between;
+    align-items: center;
+    flex-flow: column nowrap;
+    margin: 30px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 20px 40px;
+    font-size: 1.25rem;
+    text-align: center;
+    position: relative;
+    margin: 10px;
+    background: black;
+    color: #fff;
+    border-radius: 10px;
+    width: 25%;
+    flex-grow: 1 1 100px;
+}
+
+.btnT {
+    text-decoration: none;
+    padding: 20px 40px;
+    font-size: 1.25rem;
+    text-align: center;
+    position: relative;
+    margin: 10px;
+    background: black;
+    color: #fff;
+    border-radius: 10px;
+    width: 100%;
+}
+
+#orderList  {
+    height: 300px;
+    width: 100%;
+    background-color: #fff;
+    color: black;
+    border: 4px solid black;
+}
+
+#price {
+    text-align: center;
+}
