@@ -10,51 +10,69 @@ const table9 = document.querySelector("#table9");
 const table10 = document.querySelector("#table10");
 const table11 = document.querySelector("#table11");
 const table12 = document.querySelector("#table12");
+const addTables = document.querySelector("#addTables");
 
 table1.addEventListener("click", () => {
-    localStorage.setItem('tableID', 1);
+    localStorage.setItem('tableID', 'tableOne');
 });
 
 table2.addEventListener("click", () => {
-    localStorage.setItem('tableID', 2);
+    localStorage.setItem('tableID', 'tableTwo');
 });
 
 table3.addEventListener("click", () => {
-    localStorage.setItem('tableID', 3);
+    localStorage.setItem('tableID', 'tableThree');
 });
 
 table4.addEventListener("click", () => {
-    localStorage.setItem('tableID', 4);
+    localStorage.setItem('tableID', 'tableFour');
 });
 
 table5.addEventListener("click", () => {
-    localStorage.setItem('tableID', 5);
+    localStorage.setItem('tableID', 'tableFive');
 });
 
 table6.addEventListener("click", () => {
-    localStorage.setItem('tableID', 6);
+    localStorage.setItem('tableID', 'tableSix');
 });
 
 table7.addEventListener("click", () => {
-    localStorage.setItem('tableID', 7);
+    localStorage.setItem('tableID', 'tableSeven');
 });
 
 table8.addEventListener("click", () => {
-    localStorage.setItem('tableID', 8);
+    localStorage.setItem('tableID', 'tableEight');
 });
 
 table9.addEventListener("click", () => {
-    localStorage.setItem('tableID', 9);
+    localStorage.setItem('tableID', 'tableNine');
 });
 
 table10.addEventListener("click", () => {
-    localStorage.setItem('tableID', 10);
+    localStorage.setItem('tableID', 'tableTen');
 });
 
 table11.addEventListener("click", () => {
-    localStorage.setItem('tableID', 11);
+    localStorage.setItem('tableID', 'tableEl');
 });
 
 table12.addEventListener("click", () => {
-    localStorage.setItem('tableID', 12);
+    localStorage.setItem('tableID', 'tableTw');
+});
+
+const str = '"data": [ ]';
+
+addTables.addEventListener("click", () => { 
+    localStorage.setItem("tableOne",str);
+    localStorage.setItem("tableTwo",str);
+    localStorage.setItem("tableThree",str);
+    localStorage.setItem("tableFour",str);
+    localStorage.setItem("tableFive",str);
+    localStorage.setItem("tableSix",str);
+    localStorage.setItem("tableSeven",str);
+    localStorage.setItem("tableEight",str);
+    localStorage.setItem("tableNine",str);
+    localStorage.setItem("tableTen",str);
+    localStorage.setItem("tableEl",str);
+    localStorage.setItem("tableTw",str);
 });
