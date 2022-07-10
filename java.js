@@ -60,19 +60,18 @@ table12.addEventListener("click", () => {
     localStorage.setItem('tableID', 'tableTw');
 });
 
-const str = '"data": [ ]';
-
+//Trying to pass in the start of the array to local storage
 addTables.addEventListener("click", () => { 
-    localStorage.setItem("tableOne",str);
-    localStorage.setItem("tableTwo",str);
-    localStorage.setItem("tableThree",str);
-    localStorage.setItem("tableFour",str);
-    localStorage.setItem("tableFive",str);
-    localStorage.setItem("tableSix",str);
-    localStorage.setItem("tableSeven",str);
-    localStorage.setItem("tableEight",str);
-    localStorage.setItem("tableNine",str);
-    localStorage.setItem("tableTen",str);
-    localStorage.setItem("tableEl",str);
-    localStorage.setItem("tableTw",str);
+    localStorage.setItem("tableOne","");
+    localStorage.setItem("tableTwo","");
+    localStorage.setItem("tableThree","");
+    localStorage.setItem("tableFour","");
+    localStorage.setItem("tableFive","");
+    localStorage.setItem("tableSix","");
+    localStorage.setItem("tableSeven","");
+    localStorage.setItem("tableEight","");
+    localStorage.setItem("tableNine","");
+    localStorage.setItem("tableTen","");
+    localStorage.setItem("tableEl","");
+    localStorage.setItem("tableTw","");
 });
