@@ -97,7 +97,6 @@ fifty.addEventListener("click", function() {
     priceSelector.textContent = "Discount Applied: £" + price;
 });
 
-//Menu Section
 //Opens up the Menu system
 document.getElementById('Add').addEventListener("click", function() {
 	document.querySelector('#menuSystem').style.display = "flex";
@@ -106,6 +105,17 @@ document.getElementById('Add').addEventListener("click", function() {
 document.querySelector('#menuClose').addEventListener("click", function() {
 	document.querySelector('#menuSystem').style.display = "none";
 });
+
+//Food Section
+document.getElementById('foodMenu').addEventListener("click", function() {
+	document.querySelector('#foodSystem').style.display = "flex";
+});
+
+document.querySelector('#foodSystemClose').addEventListener("click", function() {
+	document.querySelector('#foodSystem').style.display = "none";
+});
+
+
 
 //Save over all the menu buttons
 const orderList = document.querySelector("#orderList");
@@ -138,6 +148,9 @@ function AddToStorage(menuItemName, price) {
         var stringfy = JSON.stringify(parsed);
         localStorage.setItem(currentTable, stringfy);
     }
+
+    DisplayPrice();
+    DisplayOrder();
 }
 
 function DisplayPrice() 
@@ -150,17 +163,144 @@ function DisplayPrice()
     priceSelector.textContent = "£" + price;
 }
 
-//Eventlis for all the buttons
-burgers.addEventListener("click", () => {
-    AddToStorage("Burger",10);
-    DisplayPrice();
-    DisplayOrder();
+//The Menu
+//Main Dishes
+fullBreakfast.addEventListener("click", () => {
+    AddToStorage("Full Breakfast",9);
 });
 
-Breakfasts.addEventListener("click", () => {
-    AddToStorage("Breakfasts",11);
-    DisplayPrice();
-    DisplayOrder();
+veganBreakfast.addEventListener("click", () => {
+    AddToStorage("Vegan Breakfast", 9);
+});
+
+welshBreakfast.addEventListener("click", () => {
+    AddToStorage("Welsh Breakfast", 10);
+});
+
+avoToast.addEventListener("click", () => {
+    AddToStorage("Avo on Toast", 7);
+});
+
+chickenClwb.addEventListener("click", () => {
+    AddToStorage("Chicken Clwb", 9);
+});
+
+veganHash.addEventListener("click", () => {
+    AddToStorage("Vegan Hash", 9);
+});
+
+eggsBenedict.addEventListener("click", () => {
+    AddToStorage("Eggs Benedict", 9);
+});
+
+humbleWaffles.addEventListener("click", () => {
+    AddToStorage("Humble Waffles", 9);
+});
+
+//Bagel
+halloumiBagel.addEventListener("click", () => {
+    AddToStorage("Halloumi Bagel", 8);
+});
+
+chickenBagel.addEventListener("click", () => {
+    AddToStorage("Chicken Bagel", 8);
+});
+
+salmonBagel.addEventListener("click", () => {
+    AddToStorage("Salmon Bagel", 8);
+});
+
+sausageBagel.addEventListener("click", () => {
+    AddToStorage("Sausage Bagel", 8);
+});
+
+//Burgers
+sloppH.addEventListener("click", () => {
+    AddToStorage("Sloppy H", 10);
+});
+
+veggH.addEventListener("click", () => {
+    AddToStorage("Vegg H", 10);
+});
+
+chickenH.addEventListener("click", () => {
+    AddToStorage("Chicken H", 10);
+});
+
+veganH.addEventListener("click", () => {
+    AddToStorage("Vegan H", 10);
+});
+
+//Welsh Rarebit
+normalRare.addEventListener("click", () => {
+    AddToStorage("Normal Rarebit", 6.50);
+});
+
+veganRare.addEventListener("click", () => {
+    AddToStorage("Vegan Rarebit", 6.50);
+});
+
+normalRarePoach.addEventListener("click", () => {
+    AddToStorage("Rarebit + Poach", 6.50);
+});
+
+//Pancakes
+bnhPancake.addEventListener("click", () => {
+    AddToStorage("Banana | Nutella | Hazelnut Pancake", 8);
+});
+
+sbyPancake.addEventListener("click", () => {
+    AddToStorage("Strawberry | Blueberry | Yourgut Pancake", 8);
+});
+
+bsaPancake.addEventListener("click", () => {
+    AddToStorage("Bacon | Spinach | Avo Pancake", 8);
+});
+
+//Waffles
+bnhWaffles.addEventListener("click", () => {
+    AddToStorage("Banana | Nutella | Hazelnut Waffles", 8);
+});
+
+sbyWaffles.addEventListener("click", () => {
+    AddToStorage("Strawberry | Blueberry | Yourgut Waffles", 8);
+});
+
+bsaWaffles.addEventListener("click", () => {
+    AddToStorage("Bacon | Spinach | Avo Waffles", 8);
+});
+
+//Something Simple
+sourdough.addEventListener("click", () => {
+    AddToStorage("sourdough", 2.50);
+});
+
+whiteToast.addEventListener("click", () => {
+    AddToStorage("White Toast", 2.50);
+});
+
+brownToast.addEventListener("click", () => {
+    AddToStorage("Brown Toast", 2.50);
+});
+
+teaCake.addEventListener("click", () => {
+    AddToStorage("Tea Cake", 2.50);
+});
+
+baconRoll.addEventListener("click", () => {
+    AddToStorage("Bacon Roll", 4);
+});
+
+sausageRoll.addEventListener("click", () => {
+    AddToStorage("Sausage Roll", 4);
+});
+
+HacaiBowl.addEventListener("click", () => {
+    AddToStorage("Hacai Bowl", 7);
+});
+
+wolfy.addEventListener("click", () => {
+    AddToStorage("Wolfy", 3);
 });
 
 
@@ -185,7 +325,9 @@ function DisplayOrder()  {
     
         for (var i = 0; i < arrayLength; i++) 
         {
-            orderList.innerHTML = orderList.textContent + " " + myJSONparsed[i].itemName + ": £" + myJSONparsed[i].price;
+            const menuItemsHTML = document.createElement("a");
+            menuItemsHTML.innerHTML = myJSONparsed[i].itemName + ": £" + myJSONparsed[i].price + "<br>";
+            orderList.appendChild(menuItemsHTML);
         } 
     }
 }
