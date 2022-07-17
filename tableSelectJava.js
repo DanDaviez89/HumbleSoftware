@@ -115,6 +115,41 @@ document.querySelector('#foodSystemClose').addEventListener("click", function() 
 	document.querySelector('#foodSystem').style.display = "none";
 });
 
+//Cold Section
+document.getElementById('coldMenu').addEventListener("click", function() {
+	document.querySelector('#coldSystem').style.display = "flex";
+});
+
+document.querySelector('#coldClose').addEventListener("click", function() {
+	document.querySelector('#coldSystem').style.display = "none";
+});
+
+//Sweet Section
+document.getElementById('sweetMenu').addEventListener("click", function() {
+	document.querySelector('#sweetSystem').style.display = "flex";
+});
+
+document.querySelector('#sweetClose').addEventListener("click", function() {
+	document.querySelector('#sweetSystem').style.display = "none";
+});
+
+//Random Section
+document.getElementById('randomMenu').addEventListener("click", function() {
+	document.querySelector('#randomSystem').style.display = "flex";
+});
+
+document.querySelector('#randomClose').addEventListener("click", function() {
+	document.querySelector('#randomSystem').style.display = "none";
+});
+
+//Hot Section
+document.getElementById('hotMenu').addEventListener("click", function() {
+	document.querySelector('#hotSystem').style.display = "flex";
+});
+
+document.querySelector('#hotClose').addEventListener("click", function() {
+	document.querySelector('#hotSystem').style.display = "none";
+});
 
 
 //Save over all the menu buttons
