@@ -97,6 +97,7 @@ fifty.addEventListener("click", function() {
     priceSelector.textContent = "Discount Applied: £" + price;
 });
 
+//Pop Ups
 //Opens up the Menu system
 document.getElementById('Add').addEventListener("click", function() {
 	document.querySelector('#menuSystem').style.display = "flex";
@@ -151,7 +152,6 @@ document.querySelector('#hotClose').addEventListener("click", function() {
 	document.querySelector('#hotSystem').style.display = "none";
 });
 
-
 //Save over all the menu buttons
 const orderList = document.querySelector("#orderList");
 const burgers = document.querySelector("#burgers");
@@ -198,7 +198,40 @@ function DisplayPrice()
     priceSelector.textContent = "£" + price;
 }
 
-//The Menu
+//Allows to view the storage
+function DisplayOrder()  {
+    //Fetch the orderlist element and reset content
+    const orderList = document.querySelector("#lsContent");
+    orderList.textContent = "";
+
+    //Fetch the table number
+    var currentTable = localStorage.getItem('tableID');
+    
+    //Fetch the JSON list
+    var tempHolder = localStorage.getItem(currentTable);
+
+    if (tempHolder != ""){
+        //Parse the JSON list
+        var myJSONparsed = JSON.parse(tempHolder);
+
+        //Loop through array
+        var arrayLength = myJSONparsed.length;    
+    
+        for (var i = 0; i < arrayLength; i++) 
+        {
+            const menuItemsHTML = document.createElement("a");
+            menuItemsHTML.innerHTML = myJSONparsed[i].itemName + ": £" + myJSONparsed[i].price + "<br>";
+            orderList.appendChild(menuItemsHTML);
+        } 
+    }
+}
+
+viewOrder.addEventListener("click", () => {
+    DisplayOrder();
+})
+
+
+//The Menu Event Listeners
 //Main Dishes
 fullBreakfast.addEventListener("click", () => {
     AddToStorage("Full Breakfast",9);
@@ -268,7 +301,7 @@ veganH.addEventListener("click", () => {
 
 //Welsh Rarebit
 normalRare.addEventListener("click", () => {
-    AddToStorage("Normal Rarebit", 6.50);
+    AddToStorage("Rarebit", 6.50);
 });
 
 veganRare.addEventListener("click", () => {
@@ -338,35 +371,71 @@ wolfy.addEventListener("click", () => {
     AddToStorage("Wolfy", 3);
 });
 
+//Cold Section
+//Bar
+milkshake.addEventListener("click", () => {
+    AddToStorage("Milkshake", 2);
+});
 
-//Allows to view the storage
-function DisplayOrder()  {
-    //Fetch the orderlist element and reset content
-    const orderList = document.querySelector("#lsContent");
-    orderList.textContent = "";
+smoothie.addEventListener("click", () => {
+    AddToStorage("Smoothie", 3.50);
+});
 
-    //Fetch the table number
-    var currentTable = localStorage.getItem('tableID');
-    
-    //Fetch the JSON list
-    var tempHolder = localStorage.getItem(currentTable);
+icedTea.addEventListener("click", () => {
+    AddToStorage("Iced Tea", 3);
+});
 
-    if (tempHolder != ""){
-        //Parse the JSON list
-        var myJSONparsed = JSON.parse(tempHolder);
+coldMilk.addEventListener("click", () => {
+    AddToStorage("Cold Milk", 1.50);
+});
 
-        //Loop through array
-        var arrayLength = myJSONparsed.length;    
-    
-        for (var i = 0; i < arrayLength; i++) 
-        {
-            const menuItemsHTML = document.createElement("a");
-            menuItemsHTML.innerHTML = myJSONparsed[i].itemName + ": £" + myJSONparsed[i].price + "<br>";
-            orderList.appendChild(menuItemsHTML);
-        } 
-    }
-}
+//Fridge
+frobisher.addEventListener("click", () => {
+    AddToStorage("Frobisher", 2);
+});
 
-viewOrder.addEventListener("click", () => {
-    DisplayOrder();
-})
+sanpellearino.addEventListener("click", () => {
+    AddToStorage("Sanpellearino", 2);
+});
+
+fetimas.addEventListener("click", () => {
+    AddToStorage("Fetimas", 2.50);
+});
+
+lemonaid.addEventListener("click", () => {
+    AddToStorage("Lemonaid", 2.50);
+});
+
+sparklingWater.addEventListener("click", () => {
+    AddToStorage("Sparkling Water", 1.50);
+});
+
+stillWater.addEventListener("click", () => {
+    AddToStorage("Still Water", 1.50);
+});
+
+icedFlatWhite.addEventListener("click", () => {
+    AddToStorage("Iced Flat White", 2.40);
+});
+
+//Sweets
+Brownie.addEventListener("click", () => {
+    AddToStorage("Brownie", 2.50);
+});
+
+Donut.addEventListener("click", () => {
+    AddToStorage("Donut", 3);
+});
+
+rockyRoad.addEventListener("click", () => {
+    AddToStorage("Rocky Road", 2.50);
+});
+
+//Randoms
+coffeBagBig.addEventListener("click", () => {
+    AddToStorage("1kg Coffee Bag", 18);
+});
+
+coffeBagSmall.addEventListener("click", () => {
+    AddToStorage("227g Coffee Bag", 8);
+});

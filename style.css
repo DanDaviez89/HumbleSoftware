@@ -28,6 +28,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    justify-content: center;
     width: 100%;
 }
 
@@ -149,4 +150,32 @@ body {
 
 #lsContent {
     white-space: pre-line;
+}
+
+.coffe-con {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    flex-direction: row;
+}
+
+.coffe-buttons {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.c-btn {
+    text-decoration: none;
+    padding: 7px 15px;
+    font-size: 1rem;
+    text-align: center;
+    margin: 5px;
+    background: #fff;
+    color: black;
+    border-radius: 10px;
+    width: 100%;
 }
