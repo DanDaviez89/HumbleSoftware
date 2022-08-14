@@ -14,7 +14,7 @@ function GetPrice()
 
     var price = 0;
 
-    if (tempHolder != ""){
+    if (tempHolder !== ""){
         //Parsing Local Storage
         var parsed = JSON.parse(tempHolder);
 
@@ -30,6 +30,198 @@ function GetPrice()
 
     return price;
 }
+ 
+//Hot Drink Section
+//fetch the class arrays
+const coffeeButtons = document.querySelectorAll('.coffee');
+const syrupButtons = document.querySelectorAll('.syrup');
+const milkButtons = document.querySelectorAll('.milk');
+const iceButtons = document.querySelectorAll('.ice');
+const decafButtons = document.querySelectorAll('.decaf');
+
+//Coffee buttons
+coffeeButtons.forEach(function(element) {
+    //add event listener to every button
+    element.addEventListener('click', function() {
+        //Search for active and turn it to normal
+        coffeeButtons.forEach(function(element) {
+            if (element.className === 'c-btn coffee active') {
+                //Change active to normal
+                element.className = 'c-btn coffee';
+            }
+        });
+
+        //Change current button click to active
+        element.className = 'c-btn coffee active';
+    });
+});
+
+//Milk Buttons
+milkButtons.forEach(function(element) {
+    //add event listener to every button
+    element.addEventListener('click', function() {
+        //Search for active and turn it to normal
+        milkButtons.forEach(function(element) {
+            if (element.className === 'c-btn milk active') {
+                //Change active to normal
+                element.className = 'c-btn milk';
+            }
+        });
+
+        //Change current button click to active
+        element.className = 'c-btn milk active';
+    });
+});
+
+//Syrup Buttons
+syrupButtons.forEach(function(element) {
+    //add event listener to every button
+    element.addEventListener('click', function() {
+        var skip = 0; 
+        
+        if (element.className === 'c-btn syrup active') {
+            //Change active to normal
+            element.className = 'c-btn syrup';
+            skip = 1;
+        }
+
+        //Search for active and turn it to normal
+        syrupButtons.forEach(function(element) {
+            if (element.className === 'c-btn syrup active') {
+                //Change active to normal
+                element.className = 'c-btn syrup';
+            }
+        });
+
+        if(skip === 0)
+        {
+            //Change current button click to active
+            element.className = 'c-btn syrup active';
+        }
+
+    });
+});
+
+//Ice Buttons
+iceButtons.forEach(function(element) {
+    //add event listener to every button
+    element.addEventListener('click', function() {
+        //Search for active and turn it to normal
+        iceButtons.forEach(function(element) {
+            if (element.className === 'c-btn ice active') {
+                //Change active to normal
+                element.className = 'c-btn ice';
+            }
+        });
+
+        //Change current button click to active
+        element.className = 'c-btn ice active';
+    });
+});
+
+//Decaf Buttons
+decafButtons.forEach(function(element) {
+    //add event listener to every button
+    element.addEventListener('click', function() {
+        //Search for active and turn it to normal
+        decafButtons.forEach(function(element) {
+            if (element.className === 'c-btn decaf active') {
+                //Change active to normal
+                element.className = 'c-btn decaf';
+            }
+        });
+
+        //Change current button click to active
+        element.className = 'c-btn decaf active';
+    });
+});
+
+//Take coffee and styrup and display "You have ordered a Coffee Styrup
+const sumitButton = document.getElementById('Enter');
+
+sumitButton.addEventListener('click', function() {
+    var coffee;
+    var milk;
+    var syrup = "";
+    var ice;
+    var decaf;
+    var price = 2;
+
+    //Search through coffee buttons for active
+    coffeeButtons.forEach(function(element) {
+        if (element.className === 'c-btn coffee active') {
+            coffee = element.value;
+        }
+
+        //Check which coffee was slected, add to price 
+    });
+
+    //Search through milk buttons for active
+    milkButtons.forEach(function(element) {
+        var skip = 0;
+        
+        if (element.className === 'c-btn milk active') {
+            milk = element.value;
+
+            if(element.value === 'Normal') {
+                skip = 1;
+            }
+
+            if(skip === 0) {
+                price = price + 0.40
+            }
+        }
+    });
+
+    //Search through syrup buttons for active
+    syrupButtons.forEach(function(element) {
+        var found = 0;
+
+        if (element.className === 'c-btn syrup active') {
+            syrup = element.value;
+            found = 1;
+        }
+        
+        if(found === 1) {
+            price = price + 0.40;
+        }
+    });
+
+    //Search through ice buttons for active
+    iceButtons.forEach(function(element) {
+        if (element.className === 'c-btn ice active') {
+            ice = element.value;
+        }
+    });
+
+    //Search through decaf buttons for active
+    decafButtons.forEach(function(element) {
+        if (element.className === 'c-btn decaf active') {
+            decaf = element.value;
+        }
+    });
+
+    //Create the string that will be saved
+    var drink = coffee
+
+    if(milk != "Normal"){
+        drink += " " + milk;
+    }
+
+    if(syrup != "") {
+        drink += " " + syrup;
+    }
+
+    if(decaf != "No Decaf") {
+        drink += " " + decaf;
+    }
+
+    if(ice != "No Ice") {
+        drink += " " + ice;
+    }
+
+    AddToStorage(drink, price);
+});
 
 //Discount Section
 //Opens up the Discount pagge
@@ -219,9 +411,59 @@ function DisplayOrder()  {
     
         for (var i = 0; i < arrayLength; i++) 
         {
-            const menuItemsHTML = document.createElement("a");
-            menuItemsHTML.innerHTML = myJSONparsed[i].itemName + ": £" + myJSONparsed[i].price + "<br>";
-            orderList.appendChild(menuItemsHTML);
+            //Creating Need Elemenets
+            const menuItemCon = document.createElement("div");
+            const menuItemTextCon = document.createElement("div");
+            const menuItemButtons = document.createElement("div");
+            const menuItemName = document.createElement("a");
+            const menuItemPrice = document.createElement("a");
+            const editMenuItem = document.createElement("button");
+            const deleteMenuItem = document.createElement("button");
+    
+            menuItemCon.className = "menuItemCon";
+            menuItemTextCon.className = "menuItemTextCon";
+            menuItemButtons.className = "menuItemButtons";
+    
+            menuItemName.className = "menuItemText";
+            menuItemName.textContent += myJSONparsed[i].itemName;
+
+            menuItemPrice.className = "menuItemText";
+            menuItemPrice.textContent += "£" + myJSONparsed[i].price;
+    
+            editMenuItem.className = "menu-item-button";
+            editMenuItem.textContent = "E";
+    
+            deleteMenuItem.className = "menu-item-button";
+            deleteMenuItem.textContent = "X"
+                
+            orderList.appendChild(menuItemCon);   
+        
+            menuItemCon.appendChild(menuItemTextCon);
+            menuItemCon.appendChild(menuItemButtons);
+
+            menuItemTextCon.appendChild(menuItemName);
+            menuItemTextCon.appendChild(menuItemPrice);
+            menuItemButtons.appendChild(editMenuItem);
+            menuItemButtons.appendChild(deleteMenuItem);
+
+            //Need to delete from list aswell
+            deleteMenuItem.addEventListener('click', function() {
+                for (var i = 0; i < arrayLength; i++) 
+                {
+                    if(myJSONparsed[i].itemName === menuItemName.textContent) {
+                        myJSONparsed[i];
+
+                        myJSONparsed.splice(i, 1);
+
+                        var stringfy = JSON.stringify(myJSONparsed);
+                        localStorage.setItem(currentTable, stringfy);
+                        break;
+                    }
+                }
+
+                DisplayPrice();
+                DisplayOrder();
+            });
         } 
     }
 }

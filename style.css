@@ -120,8 +120,8 @@ body {
 }
 
 .modal-contents {
-	height: 80%;
-	width: 80%;
+	height: 85%;
+	width: 85%;
 	background-color: white;
 	text-align: center;
 	padding: 20px;
@@ -179,3 +179,54 @@ body {
     border-radius: 10px;
     width: 100%;
 }
+
+.active {
+    background-color: green;
+    color: white;
+}
+
+.menuItemCon {
+    height: 40px;
+    width: 100%;
+    background-color: green;
+    border-radius: 10px;
+    border: black 3px solid;
+    margin: 10px auto;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menuItemTextCon {
+    height: 100%;
+    width: 65%;
+    background-color: green;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.menuItemButtons {
+    height: 100%;
+    width: 25%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.menu-item-button {
+    height: 100%;
+    width: 30px;
+    background-color: green;
+    border-radius: 3px;
+    margin: 10px;
+    color: #fff;
+    font-size: 16px;
+    border: white 2px solid;
+}
+
