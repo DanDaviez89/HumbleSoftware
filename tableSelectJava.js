@@ -1,8 +1,124 @@
 //This prints out what table the user is on
 const title = document.querySelector("#title");
 title.textContent = localStorage.getItem("tableID");
+
 DisplayPrice();
 DisplayOrder();
+
+//Adds a menu item to local storage
+function AddToStorage(menuItemName, price) {    
+    //Fetching the current table
+    var currentTable = localStorage.getItem('tableID');
+
+    //fetching local storage
+    var tempHolder = localStorage.getItem(currentTable);
+
+    var menuItem = {"itemName":menuItemName, "price":price, "description":""};
+
+    //If local storage is empty
+    if (tempHolder === ""){
+        var menuItems = [menuItem];
+        var stringfy = JSON.stringify(menuItems);
+        localStorage.setItem(currentTable, stringfy);
+    }
+
+    //If the local storage is not
+    if (tempHolder != ""){
+        var parsed = JSON.parse(tempHolder);
+        parsed.push(menuItem);
+    
+        var stringfy = JSON.stringify(parsed);
+        localStorage.setItem(currentTable, stringfy);
+    }
+
+    DisplayPrice();
+    DisplayOrder();
+}
+
+//Allows to view the storage
+function DisplayOrder()  {
+    //Fetch the orderlist element and reset content
+    const orderList = document.querySelector("#lsContent");
+    orderList.textContent = "";
+
+    //Fetch the table number
+    var currentTable = localStorage.getItem('tableID');
+    
+    //Fetch the JSON list
+    var tempHolder = localStorage.getItem(currentTable);
+
+    if (tempHolder != ""){
+        //Parse the JSON list
+        var myJSONparsed = JSON.parse(tempHolder);
+
+        //Loop through array
+        var arrayLength = myJSONparsed.length;    
+    
+        for (var i = 0; i < arrayLength; i++) 
+        {
+            //Creating Need Elemenets
+            const menuItemCon = document.createElement("div");
+            const menuItemTextCon = document.createElement("div");
+            const menuItemButtons = document.createElement("div");
+            const menuItemName = document.createElement("a");
+            const menuItemPrice = document.createElement("a");
+            const editMenuItem = document.createElement("button");
+            const deleteMenuItem = document.createElement("button");
+    
+            menuItemCon.className = "menuItemCon";
+            menuItemTextCon.className = "menuItemTextCon";
+            menuItemButtons.className = "menuItemButtons";
+    
+            menuItemName.className = "menuItemText";
+            menuItemName.textContent += myJSONparsed[i].itemName;
+
+            menuItemPrice.className = "menuItemText";
+            menuItemPrice.textContent += "£" + myJSONparsed[i].price;
+    
+            editMenuItem.className = "menu-item-button";
+            editMenuItem.textContent = "E";
+    
+            deleteMenuItem.className = "menu-item-button";
+            deleteMenuItem.textContent = "X"
+                
+            orderList.appendChild(menuItemCon);   
+        
+            menuItemCon.appendChild(menuItemTextCon);
+            menuItemCon.appendChild(menuItemButtons);
+
+            menuItemTextCon.appendChild(menuItemName);
+            menuItemTextCon.appendChild(menuItemPrice);
+            menuItemButtons.appendChild(editMenuItem);
+            menuItemButtons.appendChild(deleteMenuItem);
+
+            //Need to delete from list aswell
+            deleteMenuItem.addEventListener('click', function() {
+                for (var i = 0; i < arrayLength; i++) 
+                {
+                    if(myJSONparsed[i].itemName === menuItemName.textContent) {
+                        myJSONparsed[i];
+
+                        myJSONparsed.splice(i, 1);
+
+                        var stringfy = JSON.stringify(myJSONparsed);
+                        localStorage.setItem(currentTable, stringfy);
+                        break;
+                    }
+                }
+
+                var newTemp = localStorage.getItem(currentTable);
+                arrayLength = myJSONparsed.length;
+
+                if(arrayLength === 0) {
+                    localStorage.setItem(currentTable, "");
+                }
+
+                DisplayPrice();
+                DisplayOrder();
+            });
+        } 
+    }
+}
 
 //This function gets the total price 
 function GetPrice() 
@@ -29,6 +145,17 @@ function GetPrice()
     }
 
     return price;
+}
+
+//This function display the price
+function DisplayPrice() 
+{
+    var price = GetPrice();
+
+    //TotalPrice
+    const priceSelector = document.querySelector("#Total");
+
+    priceSelector.textContent = "£" + price;
 }
  
 //Hot Drink Section
@@ -344,134 +471,59 @@ document.querySelector('#hotClose').addEventListener("click", function() {
 	document.querySelector('#hotSystem').style.display = "none";
 });
 
-//Save over all the menu buttons
-const orderList = document.querySelector("#orderList");
-const burgers = document.querySelector("#burgers");
-const Breakfasts = document.querySelector("#Breakfasts");
-const viewOrder = document.querySelector('#viewOrder');
+//Small Plates Section
+document.getElementById('smallPlateMenu').addEventListener("click", function() {
+	document.querySelector('#smallPlateSystem').style.display = "flex";
+});
 
-//Adds a menu item to local storage
-function AddToStorage(menuItemName, price) {    
-    //Fetching the current table
-    var currentTable = localStorage.getItem('tableID');
+document.querySelector('#smallPlateClose').addEventListener("click", function() {
+	document.querySelector('#smallPlateSystem').style.display = "none";
+});
 
-    //fetching local storage
-    var tempHolder = localStorage.getItem(currentTable);
+//Sides and Desserts Section
+document.getElementById('sideDessertsMenu').addEventListener("click", function() {
+	document.querySelector('#SideDessertSystem').style.display = "flex";
+});
 
-    var menuItem = {"itemName":menuItemName, "price":price};
+document.querySelector('#SideDessertClose').addEventListener("click", function() {
+	document.querySelector('#SideDessertSystem').style.display = "none";
+});
 
-    //If local storage is empty
-    if (tempHolder === ""){
-        var menuItems = [menuItem];
-        var stringfy = JSON.stringify(menuItems);
-        localStorage.setItem(currentTable, stringfy);
-    }
+//Beer and Cider Section
+document.getElementById('beerCiderMenu').addEventListener("click", function() {
+	document.querySelector('#beerCiderSystem').style.display = "flex";
+});
 
-    //If the local storage is not
-    if (tempHolder != ""){
-        var parsed = JSON.parse(tempHolder);
-        parsed.push(menuItem);
-    
-        var stringfy = JSON.stringify(parsed);
-        localStorage.setItem(currentTable, stringfy);
-    }
+document.querySelector('#beerCiderClose').addEventListener("click", function() {
+	document.querySelector('#beerCiderSystem').style.display = "none";
+});
 
-    DisplayPrice();
-    DisplayOrder();
-}
+//Cocktails Section
+document.getElementById('cocktailsMenu').addEventListener("click", function() {
+	document.querySelector('#cocktailsSystem').style.display = "flex";
+});
 
-function DisplayPrice() 
-{
-    var price = GetPrice();
+document.querySelector('#cocktailsClose').addEventListener("click", function() {
+	document.querySelector('#cocktailsSystem').style.display = "none";
+});
 
-    //TotalPrice
-    const priceSelector = document.querySelector("#Total");
+//Wine Section
+document.getElementById('wineMenu').addEventListener("click", function() {
+	document.querySelector('#wineSystem').style.display = "flex";
+});
 
-    priceSelector.textContent = "£" + price;
-}
+document.querySelector('#wineClose').addEventListener("click", function() {
+	document.querySelector('#wineSystem').style.display = "none";
+});
 
-//Allows to view the storage
-function DisplayOrder()  {
-    //Fetch the orderlist element and reset content
-    const orderList = document.querySelector("#lsContent");
-    orderList.textContent = "";
+//Gin, Vodka and Tonic Section
+document.getElementById('tonicMenu').addEventListener("click", function() {
+	document.querySelector('#tonicPage').style.display = "flex";
+});
 
-    //Fetch the table number
-    var currentTable = localStorage.getItem('tableID');
-    
-    //Fetch the JSON list
-    var tempHolder = localStorage.getItem(currentTable);
-
-    if (tempHolder != ""){
-        //Parse the JSON list
-        var myJSONparsed = JSON.parse(tempHolder);
-
-        //Loop through array
-        var arrayLength = myJSONparsed.length;    
-    
-        for (var i = 0; i < arrayLength; i++) 
-        {
-            //Creating Need Elemenets
-            const menuItemCon = document.createElement("div");
-            const menuItemTextCon = document.createElement("div");
-            const menuItemButtons = document.createElement("div");
-            const menuItemName = document.createElement("a");
-            const menuItemPrice = document.createElement("a");
-            const editMenuItem = document.createElement("button");
-            const deleteMenuItem = document.createElement("button");
-    
-            menuItemCon.className = "menuItemCon";
-            menuItemTextCon.className = "menuItemTextCon";
-            menuItemButtons.className = "menuItemButtons";
-    
-            menuItemName.className = "menuItemText";
-            menuItemName.textContent += myJSONparsed[i].itemName;
-
-            menuItemPrice.className = "menuItemText";
-            menuItemPrice.textContent += "£" + myJSONparsed[i].price;
-    
-            editMenuItem.className = "menu-item-button";
-            editMenuItem.textContent = "E";
-    
-            deleteMenuItem.className = "menu-item-button";
-            deleteMenuItem.textContent = "X"
-                
-            orderList.appendChild(menuItemCon);   
-        
-            menuItemCon.appendChild(menuItemTextCon);
-            menuItemCon.appendChild(menuItemButtons);
-
-            menuItemTextCon.appendChild(menuItemName);
-            menuItemTextCon.appendChild(menuItemPrice);
-            menuItemButtons.appendChild(editMenuItem);
-            menuItemButtons.appendChild(deleteMenuItem);
-
-            //Need to delete from list aswell
-            deleteMenuItem.addEventListener('click', function() {
-                for (var i = 0; i < arrayLength; i++) 
-                {
-                    if(myJSONparsed[i].itemName === menuItemName.textContent) {
-                        myJSONparsed[i];
-
-                        myJSONparsed.splice(i, 1);
-
-                        var stringfy = JSON.stringify(myJSONparsed);
-                        localStorage.setItem(currentTable, stringfy);
-                        break;
-                    }
-                }
-
-                DisplayPrice();
-                DisplayOrder();
-            });
-        } 
-    }
-}
-
-viewOrder.addEventListener("click", () => {
-    DisplayOrder();
-})
-
+document.querySelector('#tonicClose').addEventListener("click", function() {
+	document.querySelector('#tonicPage').style.display = "none";
+});
 
 //The Menu Event Listeners
 //Main Dishes
@@ -680,4 +732,190 @@ coffeBagBig.addEventListener("click", () => {
 
 coffeBagSmall.addEventListener("click", () => {
     AddToStorage("227g Coffee Bag", 8);
+});
+
+//Small Plates
+buyThree.addEventListener("click", () => {
+    AddToStorage("3 for £15", 15);
+});
+
+Calamari.addEventListener("click", () => {
+    AddToStorage("Calamari", 7);
+});
+
+BellyPork.addEventListener("click", () => {
+    AddToStorage("BellyPork", 8);
+});
+
+CatalanChickpea.addEventListener("click", () => {
+    AddToStorage("Catalan Chickpea", 6);
+});
+
+Bruschetta.addEventListener("click", () => {
+    AddToStorage("Bruschetta", 6);
+});
+
+Brie.addEventListener("click", () => {
+    AddToStorage("Brie", 6);
+});
+
+Dauphinoise.addEventListener("click", () => {
+    AddToStorage("Dauphinoise", 6);
+});
+
+Croquetas.addEventListener("click", () => {
+    AddToStorage("Croquetas", 6);
+});
+
+PotatasBravado.addEventListener("click", () => {
+    AddToStorage("Potatas Bravado", 6);
+});
+
+Whitebait.addEventListener("click", () => {
+    AddToStorage("Whitebait", 6);
+});
+
+Meatballs.addEventListener("click", () => {
+    AddToStorage("Meatballs", 6);
+});
+
+GarlicMushrooms.addEventListener("click", () => {
+    AddToStorage("Garlic Mushrooms", 5);
+});
+
+//Sides and PLates
+fries.addEventListener("click", () => {
+    AddToStorage("Fries", 3);
+});
+
+beansBacon.addEventListener("click", () => {
+    AddToStorage("Beans and Bacon", 3);
+});
+
+broccoli.addEventListener("click", () => {
+    AddToStorage("Broccoli", 3);
+});
+
+posset.addEventListener("click", () => {
+    AddToStorage("Posset", 5);
+});
+
+brownie.addEventListener("click", () => {
+    AddToStorage("Brownie", 5);
+});
+
+vbrownie.addEventListener("click", () => {
+    AddToStorage("Vegan Brownie", 5);
+});
+
+crumble.addEventListener("click", () => {
+    AddToStorage("Crumble", 5);
+});
+
+//Beer and Cider
+tropica.addEventListener("click", () => {
+    AddToStorage("Tropica", 3.50);
+});
+
+vedettro.addEventListener("click", () => {
+    AddToStorage("Vedettro", 4);
+});
+
+paulaner.addEventListener("click", () => {
+    AddToStorage("Paulaner", 5);
+});
+
+kriekBoon.addEventListener("click", () => {
+    AddToStorage("Kriek Boon", 5);
+});
+
+madri.addEventListener("click", () => {
+    AddToStorage("Madri", 3.50);
+});
+
+seidr.addEventListener("click", () => {
+    AddToStorage("Seidr", 4.80);
+});
+
+//Cocktails
+twoCocktails.addEventListener("click", () => {
+    AddToStorage("2 for £12", 12);
+});
+
+yesMa.addEventListener("click", () => {
+    AddToStorage("Yes Ma'am", 8);
+});
+
+mojito.addEventListener("click", () => {
+    AddToStorage("Mojito", 7.50);
+});
+
+daiquiri.addEventListener("click", () => {
+    AddToStorage("Daiquiri", 7.50);
+});
+
+longIsland.addEventListener("click", () => {
+    AddToStorage("Long Island", 7.50);
+});
+
+turk.addEventListener("click", () => {
+    AddToStorage("Turk-ish Delight", 7.50);
+});
+
+loveMuffin.addEventListener("click", () => {
+    AddToStorage("love-Muffin", 8);
+});
+
+humbleCoffi.addEventListener("click", () => {
+    AddToStorage("Humble Coffi", 9);
+});
+
+sangria.addEventListener("click", () => {
+    AddToStorage("Sangria", 7.50);
+});
+
+//Wine
+calvsari.addEventListener("click", () => {
+    AddToStorage("Calvsari Pinot Grigio", 5);
+});
+
+prosecco.addEventListener("click", () => {
+    AddToStorage("Vina Pomona Prosecco", 24);
+});
+
+sauvignon.addEventListener("click", () => {
+    AddToStorage("Rewild Sauvignon Blanc", 5);
+});
+
+fancyPants.addEventListener("click", () => {
+    AddToStorage("Fancy Pants Rose Wine", 5);
+});
+
+rewildMalbec.addEventListener("click", () => {
+    AddToStorage("Rewild Malbec", 5);
+});
+
+grayShiraz.addEventListener("click", () => {
+    AddToStorage("Don't Tell Gary Shiraz", 5);
+});
+
+//Gin, Vodka and Tonic
+fiveVodka.addEventListener("click", () => {
+    AddToStorage("Five Vodka", 5);
+});
+
+aztec.addEventListener("click", () => {
+    AddToStorage("Aztec", 5);
+});
+
+sxc.addEventListener("click", () => {
+    AddToStorage("SXC", 5);
+});
+
+breconGin.addEventListener("click", () => {
+    AddToStorage("Brecon Gin", 5);
+});
+
+FeverTree.addEventListener("click", () => {
+    AddToStorage("Fever Tree", 5);
 });
