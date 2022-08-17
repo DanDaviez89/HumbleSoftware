@@ -16,80 +16,80 @@ const table15 = document.querySelector("#table15");
 const addTables = document.querySelector("#addTables");
 
 table1.addEventListener("click", () => {
-    localStorage.setItem('tableID', 'tableOne');
+    localStorage.setItem('tableID', 'One');
 });
 
 table2.addEventListener("click", () => {
-    localStorage.setItem('tableID', 'tableTwo');
+    localStorage.setItem('tableID', 'Two');
 });
 
 table3.addEventListener("click", () => {
-    localStorage.setItem('tableID', 'tableThree');
+    localStorage.setItem('tableID', 'Three');
 });
 
 table4.addEventListener("click", () => {
-    localStorage.setItem('tableID', 'tableFour');
+    localStorage.setItem('tableID', 'Four');
 });
 
 table5.addEventListener("click", () => {
-    localStorage.setItem('tableID', 'tableFive');
+    localStorage.setItem('tableID', 'Five');
 });
 
 table6.addEventListener("click", () => {
-    localStorage.setItem('tableID', 'tableSix');
+    localStorage.setItem('tableID', 'Six');
 });
 
 table7.addEventListener("click", () => {
-    localStorage.setItem('tableID', 'tableSeven');
+    localStorage.setItem('tableID', 'Seven');
 });
 
 table8.addEventListener("click", () => {
-    localStorage.setItem('tableID', 'tableEight');
+    localStorage.setItem('tableID', 'Eight');
 });
 
 table9.addEventListener("click", () => {
-    localStorage.setItem('tableID', 'tableNine');
+    localStorage.setItem('tableID', 'Nine');
 });
 
 table10.addEventListener("click", () => {
-    localStorage.setItem('tableID', 'tableTen');
+    localStorage.setItem('tableID', 'Ten');
 });
 
 table11.addEventListener("click", () => {
-    localStorage.setItem('tableID', 'tableEl');
+    localStorage.setItem('tableID', 'Elven');
 });
 
 table12.addEventListener("click", () => {
-    localStorage.setItem('tableID', 'tableTw');
+    localStorage.setItem('tableID', 'Twelve');
 });
 
 table13.addEventListener("click", () => {
-    localStorage.setItem('tableID', 'tableThirt');
+    localStorage.setItem('tableID', 'Thirteen');
 });
 
 table14.addEventListener("click", () => {
-    localStorage.setItem('tableID', 'tableFourt');
+    localStorage.setItem('tableID', 'Fourteen');
 });
 
 table15.addEventListener("click", () => {
-    localStorage.setItem('tableID', 'tableFift');
+    localStorage.setItem('tableID', 'Fifteen');
 });
 
 //Trying to pass in the start of the array to local storage
 resetTables.addEventListener("click", () => { 
-    localStorage.setItem("tableOne","");
-    localStorage.setItem("tableTwo","");
-    localStorage.setItem("tableThree","");
-    localStorage.setItem("tableFour","");
-    localStorage.setItem("tableFive","");
-    localStorage.setItem("tableSix","");
-    localStorage.setItem("tableSeven","");
-    localStorage.setItem("tableEight","");
-    localStorage.setItem("tableNine","");
-    localStorage.setItem("tableTen","");
-    localStorage.setItem("tableEl","");
-    localStorage.setItem("tableTw","");
-    localStorage.setItem("tableThirt","");
-    localStorage.setItem("tableFourt","");
-    localStorage.setItem("tableFift","");
+    localStorage.setItem("One","");
+    localStorage.setItem("Two","");
+    localStorage.setItem("Three","");
+    localStorage.setItem("Four","");
+    localStorage.setItem("Five","");
+    localStorage.setItem("Six","");
+    localStorage.setItem("Seven","");
+    localStorage.setItem("Eight","");
+    localStorage.setItem("Nine","");
+    localStorage.setItem("Ten","");
+    localStorage.setItem("Elven","");
+    localStorage.setItem("Twelve","");
+    localStorage.setItem("Thirteen","");
+    localStorage.setItem("Fourteen","");
+    localStorage.setItem("Fifteen","");
 });

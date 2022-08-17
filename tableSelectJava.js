@@ -1,6 +1,6 @@
 //This prints out what table the user is on
 const title = document.querySelector("#title");
-title.textContent = localStorage.getItem("tableID");
+title.textContent = 'Table ' + localStorage.getItem("tableID");
 
 DisplayPrice();
 DisplayOrder();
@@ -114,6 +114,23 @@ function removeList() {
     {
         menuItems[i].remove();
     }
+}
+
+function getSecondPrice() {
+    const removeListItems = document.querySelectorAll('.PriceM');
+    
+    document.getElementById('secondPrice').textContent = "";
+
+    var arrayLength = removeListItems.length;
+
+    var price = 0;
+
+    for(i = 0; i < arrayLength; i++)
+    {
+        price = price + +removeListItems[i].textContent;
+    }
+
+    return price;
 }
 
 //Remove button in payments
@@ -570,15 +587,81 @@ fifty.addEventListener("click", function() {
     priceSelector.textContent = "Discount Applied: £" + price;
 });
 
+//Payment Discount
+//Opens up the Discount pagge
+document.getElementById('paymentDiscount').addEventListener("click", function() {
+	document.querySelector('#paymentDiscountPage').style.display = "flex";
+});
+
+document.querySelector('#paymentDiscountClose').addEventListener("click", function() {
+	document.querySelector('#paymentDiscountPage').style.display = "none";
+});
+
+//Save over all the menu buttons
+const paymentZero = document.querySelector("#paymentZero");
+const paymentTen = document.querySelector("#paymentTen");
+const paymentTwenty = document.querySelector("#paymentTwenty");
+const paymentTfive = document.querySelector('#paymentTfive');
+const paymentTifty = document.querySelector('#paymentTifty');
+
+//Discount buttons
+paymentZero.addEventListener("click", function() {
+    var price = getSecondPrice();
+    price = price;
+
+    //TotalPrice
+    const priceSelector = document.querySelector("#secondPrice");
+    priceSelector.textContent = "£" + price;
+});
+
+paymentTen.addEventListener("click", function() {
+    var price = getSecondPrice();
+    var discountPrice = price / 100 * 10;
+    var price = price - discountPrice;
+
+    //TotalPrice
+    const priceSelector = document.querySelector("#secondPrice");
+    priceSelector.textContent = "Discount 10%: £" + price;
+});
+
+paymentTwenty.addEventListener("click", function() {
+    var price = getSecondPrice();
+    var discountPrice = price / 100 * 20;
+    var price = price - discountPrice;
+
+    //TotalPrice
+    const priceSelector = document.querySelector("#secondPrice");
+    priceSelector.textContent = "Discount 20%: £" + price;
+});
+
+paymentTfive.addEventListener("click", function() {
+    var price = getSecondPrice();
+    var discountPrice = price / 100 * 25;
+    var price = price - discountPrice;
+
+    //TotalPrice
+    const priceSelector = document.querySelector("#secondPrice");
+    priceSelector.textContent = "Discount 25%: £" + price;
+});
+
+paymentTifty.addEventListener("click", function() {
+    var price = getSecondPrice();
+    price = price / 2;
+
+    //TotalPrice
+    const priceSelector = document.querySelector("#secondPrice");
+    priceSelector.textContent = "Discount 50%: £" + price;
+});
+
 //Pop Ups
 //Split Bill
 document.getElementById('Payment').addEventListener('click', function() {
-    document.querySelector('#remove-page').style.display = "flex";
+    document.querySelector('#payment-page').style.display = "flex";
     displayList ();
 })
 
-document.getElementById('removeClose').addEventListener('click', function() {
-    document.querySelector('#remove-page').style.display = 'none';
+document.getElementById('paymentClose').addEventListener('click', function() {
+    document.querySelector('#payment-page').style.display = 'none';
 })
 
 //Opens up the Menu system

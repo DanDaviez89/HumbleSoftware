@@ -38,9 +38,9 @@
     </div> 
 
      <!-- Payment pop up-->
-    <div class="bg-modal" id="remove-page">
+    <div class="bg-modal" id="payment-page">
         <div class="modal-contents"> 
-            <div class="close" id="removeClose">+</div>
+            <div class="close" id="paymentClose">+</div>
 
             <h1>PAYMENT</h1>
 
@@ -57,7 +57,7 @@
             <div id="button-row-con">
                 <div id="buttons">
                     <button class="payment-buttons" id="Remove">Remove</button>
-                    <button class="payment-buttons" id="SecondDiscount">Discount</button>
+                    <button class="payment-buttons" id="paymentDiscount">Discount</button>
                     <button class="payment-buttons" id="printReceipt">Receipt</button>
                     <button class="payment-buttons" id="printFood">Print Food</button>
                 </div>
@@ -65,6 +65,24 @@
                 <div id="price">
                     <h2 id="secondPrice"></h2>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Discount pop up -->
+    <div class="bg-modal" id="paymentDiscountPage">
+        <div class="modal-contents">
+        
+            <div class="close" id="paymentDiscountClose">+</div>
+    
+            <h1>Discount</h1>
+    
+            <div class="sml-buttons">
+                <a href="#" class="sml-btn" id="paymentZero">0%</a>
+                <a href="#" class="sml-btn" id="paymentTen">10%</a>
+                <a href="#" class="sml-btn" id="paymentTwenty">20%</a>
+                <a href="#" class="sml-btn" id="paymentTfive">25%</a>
+                <a href="#" class="sml-btn" id="paymentTifty">50%</a>
             </div>
         </div>
     </div>
