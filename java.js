@@ -10,6 +10,9 @@ const table9 = document.querySelector("#table9");
 const table10 = document.querySelector("#table10");
 const table11 = document.querySelector("#table11");
 const table12 = document.querySelector("#table12");
+const table13 = document.querySelector("#table13");
+const table14 = document.querySelector("#table14");
+const table15 = document.querySelector("#table15");
 const addTables = document.querySelector("#addTables");
 
 table1.addEventListener("click", () => {
@@ -60,8 +63,20 @@ table12.addEventListener("click", () => {
     localStorage.setItem('tableID', 'tableTw');
 });
 
+table13.addEventListener("click", () => {
+    localStorage.setItem('tableID', 'tableThirt');
+});
+
+table14.addEventListener("click", () => {
+    localStorage.setItem('tableID', 'tableFourt');
+});
+
+table15.addEventListener("click", () => {
+    localStorage.setItem('tableID', 'tableFift');
+});
+
 //Trying to pass in the start of the array to local storage
-addTables.addEventListener("click", () => { 
+resetTables.addEventListener("click", () => { 
     localStorage.setItem("tableOne","");
     localStorage.setItem("tableTwo","");
     localStorage.setItem("tableThree","");
@@ -74,4 +89,7 @@ addTables.addEventListener("click", () => {
     localStorage.setItem("tableTen","");
     localStorage.setItem("tableEl","");
     localStorage.setItem("tableTw","");
+    localStorage.setItem("tableThirt","");
+    localStorage.setItem("tableFourt","");
+    localStorage.setItem("tableFift","");
 });

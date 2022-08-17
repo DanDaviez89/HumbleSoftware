@@ -24,6 +24,11 @@ body {
     background-color: #fff;
 }
 
+.container h1 {
+    font-size: 48px;
+    color: #1b8a19;
+}
+
 .containerT {
     display: flex;
     align-items: center;
@@ -35,6 +40,7 @@ body {
 .buttons {
     display: flex;
     width: 100%;
+    justify-content: center;
 }
 
 .buttonsCol {
@@ -51,15 +57,15 @@ body {
 .btn {
     text-decoration: none;
     padding: 20px 40px;
-    font-size: 1.25rem;
+    font-size: 24px;
     text-align: center;
     position: relative;
     margin: 10px;
     background: #1b8a19;
     color: #fff;
     border-radius: 10px;
-    width: 25%;
-    flex-grow: 1 1 100px;
+    width: 200px;
+    border: black 3px solid;
 }
 
 .sml-buttons {
@@ -79,10 +85,11 @@ body {
     color: #fff;
     border-radius: 10px;
     width: 120px;
-    height: 50px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: #333 3px solid;
 }
 
 .btnT {
@@ -96,6 +103,7 @@ body {
     color: #fff;
     border-radius: 10px;
     width: 100%;
+    border: black 3px solid;
 }
 
 #orderList  {
@@ -224,13 +232,75 @@ body {
 }
 
 .menu-item-button {
-    height: 100%;
-    width: 30px;
+    height: 30px;
+    width: 40px;
     background-color: green;
     border-radius: 3px;
-    margin: 10px;
+    margin: 5px;
     color: #fff;
     font-size: 16px;
-    border: white 1px solid;
+    border: white 2px solid;
+}
+
+#remove-con {
+    height: 70%;
+    width: 90%;
+    margin: 10px auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.list {
+    height: 100%;
+    width: 320px;
+    border: black 5px solid;
+    border-radius: 15px;
+}
+
+#button-row-con {
+    height: 100px;
+    width: 90%;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.payment-buttons {
+    height: 60px;
+    width: 120px;
+    background-color:green;
+    color: #fff;
+    margin: 10px;
+    border-radius: 15px;
+}
+
+.menuItem {
+    height: 40px;
+    width: 90%;
+    background-color: green;
+    border-radius: 10px;
+    border: black 3px solid;
+    margin: 10px auto;
+    padding: 5px 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    color: white;
+}
+
+.transfer-item {
+    height: 30px;
+    width: 30px;
+    background-color: green;
+    color: #fff;
+    font-family: 'Poppins';
+    font-weight: bolder;
+    font-size: 24px;
+    border-radius: 15px;
+    border: white 3px solid;
 }
 

@@ -5,6 +5,160 @@ title.textContent = localStorage.getItem("tableID");
 DisplayPrice();
 DisplayOrder();
 
+//This function is used to disply the payment lists
+function displayList () {
+    removeList();
+    //Fetching the current table
+    var currentTable = localStorage.getItem('tableID');
+
+    //fetching local storage
+    var tempHolder = localStorage.getItem(currentTable);
+
+    var counter = 0;
+
+    //Fetch both lists
+    const listStart = document.getElementById('listStart');
+    const listEnd = document.getElementById('listEnd');
+
+    //Parse the JSON list
+    var myJSONparsed = JSON.parse(tempHolder);
+
+    //Loop through array
+    var arrayLength = myJSONparsed.length;    
+
+    for (var i = 0; i < arrayLength; i++) 
+    {
+        const menuItem = document.createElement("div");
+        const menuItemName = document.createElement("a");
+        const menuPrice = document.createElement("a");
+        const transferButton = document.createElement("button");
+    
+        menuItem.className = "menuItem";
+
+        menuItemName.className = "menuItem-Name";
+        menuItemName.textContent += myJSONparsed[i].itemName;
+
+        menuPrice.className = "menuItem-Price";
+        menuPrice.textContent += myJSONparsed[i].price;
+    
+        transferButton.className = "transfer-item";
+    
+        //This transfers a todo to the other list
+        transferButton.addEventListener('click', function() {
+            var check = 0;
+
+            //Transfer from starting llst to remove list
+            if(menuItem.parentNode.id === "listStart"){
+                menuItemName.className += " Moved";
+                menuPrice.className += " PriceM";
+
+                listEnd.appendChild(menuItem);   
+
+                menuItem.appendChild(menuItemName);
+                menuItem.appendChild(menuPrice);
+                menuItem.appendChild(transferButton);
+                displaySecondPrice();
+
+                check = 1;
+            }
+
+            //Transfer from remove llst to starting list
+            if(menuItem.parentNode.id === "listEnd" && check === 0){
+                menuItemName.className = "menuItem-Name";
+                menuPrice.className += "menuItem-Price";
+                listStart.appendChild(menuItem);   
+
+                menuItem.appendChild(menuItemName);
+                menuItem.appendChild(menuPrice);
+                menuItem.appendChild(transferButton);
+                displaySecondPrice();
+            }
+        })
+
+        listStart.appendChild(menuItem);   
+
+        menuItem.appendChild(menuItemName);
+        menuItem.appendChild(menuPrice);
+        menuItem.appendChild(transferButton);
+        displaySecondPrice();
+
+        counter++;
+    }
+}
+
+function displaySecondPrice(){
+    const removeListItems = document.querySelectorAll('.PriceM');
+    
+    document.getElementById('secondPrice').textContent = "";
+
+    var arrayLength = removeListItems.length;
+
+    var price = 0;
+
+    for(i = 0; i < arrayLength; i++)
+    {
+        price = price + +removeListItems[i].textContent;
+    }
+
+    document.getElementById('secondPrice').textContent += "£" + price;
+}
+
+//This resets the payment lists
+function removeList() {
+    const menuItems = document.querySelectorAll('.menuItem');
+
+    //Loop through array
+    var arrayLength = menuItems.length;  
+
+    for (var i = 0; i < arrayLength; i++) 
+    {
+        menuItems[i].remove();
+    }
+}
+
+//Remove button in payments
+document.getElementById('Remove').addEventListener('click', function() {
+    const removeListItems = document.querySelectorAll('.Moved');
+
+    //Fetch the table number
+    var currentTable = localStorage.getItem('tableID');
+    
+    //Fetch the JSON list
+    var tempHolder = localStorage.getItem(currentTable);
+    
+    //Parse the JSON list
+    var myJSONparsed = JSON.parse(tempHolder);
+    
+    //Loop through array
+    var arrayLength = removeListItems.length;  
+    var myJASONlength = myJSONparsed.length;
+
+    //Search through all the removeList
+    for (var i = 0; i < arrayLength; i++) 
+    {
+        //Loop through all menu items
+        for(var ii = 0; ii < myJASONlength; ii++)
+        {
+            //Check to see if menuItemsContents matches menuitems in saved local
+            if(removeListItems[i].textContent === myJSONparsed[ii].itemName)
+            {
+                myJSONparsed.splice(ii, 1);
+
+                var stringfy = JSON.stringify(myJSONparsed);
+                localStorage.setItem(currentTable, stringfy);
+                
+                removeListItems[i].parentNode.remove();
+
+                DisplayOrder();
+                DisplayPrice();
+                break;
+            }
+        }
+    }
+
+    displaySecondPrice();
+})
+
 //Adds a menu item to local storage
 function AddToStorage(menuItemName, price) {    
     //Fetching the current table
@@ -417,6 +571,16 @@ fifty.addEventListener("click", function() {
 });
 
 //Pop Ups
+//Split Bill
+document.getElementById('Payment').addEventListener('click', function() {
+    document.querySelector('#remove-page').style.display = "flex";
+    displayList ();
+})
+
+document.getElementById('removeClose').addEventListener('click', function() {
+    document.querySelector('#remove-page').style.display = 'none';
+})
+
 //Opens up the Menu system
 document.getElementById('Add').addEventListener("click", function() {
 	document.querySelector('#menuSystem').style.display = "flex";

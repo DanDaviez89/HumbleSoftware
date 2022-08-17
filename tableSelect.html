@@ -11,14 +11,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>Humble</h1>
+        <h1>Humble.</h1>
 
         <div class="containerT">
             <div class="buttonsCol">
-                <a href="#" class="btnT" id="Add">Add to Order</a>
-                <a href="#" class="btnT" id="Discount">Add Discount</a>
+                <a href="#" class="btnT" id="Add">Menu</a>
+                <a href="#" class="btnT" id="Discount">Discount</a>
                 <a href="#" class="btnT" id="Payment">Payment</a>
-                <a href="index.html" class="btnT" id="Save Orders">Save Order</a>
+                <a href="index.html" class="btnT" id="Save Orders">Tables</a>
             </div>
     
             <div class="buttonsCol">
@@ -31,11 +31,43 @@
                 </div>
                 
                 <div id="price">
-                    <h1 id="Total"></h1>
+                    <h2 id="Total"></h2>
                 </div>
             </div>
         </div>
     </div> 
+
+     <!-- Payment pop up-->
+    <div class="bg-modal" id="remove-page">
+        <div class="modal-contents"> 
+            <div class="close" id="removeClose">+</div>
+
+            <h1>PAYMENT</h1>
+
+            <div id="remove-con"> 
+                <div class="list" id="listStart" value="start">
+
+                </div>
+
+                <div class="list" id="listEnd" value="end">
+
+                </div>
+            </div>
+
+            <div id="button-row-con">
+                <div id="buttons">
+                    <button class="payment-buttons" id="Remove">Remove</button>
+                    <button class="payment-buttons" id="SecondDiscount">Discount</button>
+                    <button class="payment-buttons" id="printReceipt">Receipt</button>
+                    <button class="payment-buttons" id="printFood">Print Food</button>
+                </div>
+
+                <div id="price">
+                    <h2 id="secondPrice"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Add To Order pop up-->
     <div class="bg-modal" id="menuSystem">
@@ -43,7 +75,7 @@
         
             <div class="close" id="menuClose">+</div>
     
-            <h1>Humble Menu System</h1>
+            <h1>Menu System</h1>
             
             <br>
             <h1>Morning</h1><br>
